@@ -16,5 +16,5 @@ mkdir -p ../_install/etc
 cp ./mqttv4 ../_install/bin
 cp ./conf/mqttv4.conf ../_install/etc
 
-arm-hisiv300-linux-strip ../_install/bin/*
+arm-hisiv300-linux-uclibcgnueabi-strip ../_install/bin/*
 

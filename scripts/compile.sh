@@ -80,7 +80,7 @@ echo ""
 
 # this is needed because with sudo the PATH apparently doesn't contain it. Idk why
 # Hisilicon Linux, Cross-Toolchain PATH
-export PATH="/opt/hisi-linux/x86-arm/arm-hisiv300-linux/target/bin:$PATH"
+export PATH="/opt/arm-hisiv300-linux/bin:$PATH"
 
 rm -rf "$(get_script_dir)/../build/"
 

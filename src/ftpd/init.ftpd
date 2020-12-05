@@ -10,11 +10,11 @@ git reset --hard || exit 1
 
 ./autogen.sh || exit 1
 
-./configure CC=arm-hisiv300-linux-gcc \
+./configure CC=arm-hisiv300-linux-uclibcgnueabi-gcc \
     --prefix=$SCRIPT_DIR/_install \
-    USER_CFLAGS="-march=armv5te -mcpu=arm926ej-s -I/opt/hisi-linux/x86-arm/arm-hisiv300-linux/target/usr/include -L/opt/hisi-linux/x86-arm/arm-hisiv300-linux/target/usr/lib" \
-    AR=arm-hisiv300-linux-ar \
-    RANLIB=arm-hisiv300-linux-ranlib \
+    USER_CFLAGS="-march=armv5te -mcpu=arm926ej-s -I/opt/arm-hisiv300-linux/target/usr/include -L/opt/arm-hisiv300-linux/target/usr/lib" \
+    AR=arm-hisiv300-linux-uclibcgnueabi-ar \
+    RANLIB=arm-hisiv300-linux-uclibcgnueabi-ranlib \
     --host=arm \
     --with-minimal \
     || exit 1

@@ -1,5 +1,5 @@
 #
-#  This file is part of yi-hack-v4 (https://github.com/TheCrypt0/yi-hack-v4).
+#  This file is part of mqttv4 (https://github.com/TheCrypt0/mqttv4).
 #  Copyright (c) 2018-2019 Davide Maggioni.
 # 
 #  This program is free software: you can redistribute it and/or modify

@@ -11,7 +11,7 @@ make realclean
 cp ../.config ./ || exit 1
 
 make \
-    CROSS_COMPILE=arm-hisiv300-linux- \
+    CROSS_COMPILE=arm-hisiv300-linux-uclibcgnueabi- \
     ARCH=arm \
     USER_CFLAGS="-march=armv5te -mcpu=arm926ej-s" \
     || exit 1
@@ -21,4 +21,4 @@ mkdir -p ../_install/lib || exit 1
 cp src/libuClibc++-0.2.5-git.so ../_install/lib/ || exit 1
 ln -fs libuClibc++-0.2.5-git.so ../_install/lib/libuClibc++.so.0 || exit 1
 
-arm-hisiv300-linux-strip ../_install/lib/* || exit 1
+arm-hisiv300-linux-uclibcgnueabi-strip ../_install/lib/* || exit 1

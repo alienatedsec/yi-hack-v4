@@ -81,6 +81,24 @@ if [[ $(get_config RTSP) == "yes" ]] ; then
     fi
 fi
 
+#ToDo
+#SERIAL_NUMBER=$(dd status=none bs=1 count=20 skip=661 if=/tmp/mmap.info)
+#HW_ID=$(dd status=none bs=1 count=4 skip=661 if=/tmp/mmap.info)
+YI_HACK_VER="1.0.0"
+HW_ID="HW_ID"
+SERIAL_NUMBER="SN1234"
+ONVIF_PORT=8080
+
+if [[ $(get_config ONVIF) == "yes" ]] ; then
+    ONVIF_PROFILE_0="--name Profile_0 --width 1920 --height 1080 --url rtsp://%s/ch0_0.h264 --type H264"
+    ONVIF_PROFILE_1="--name Profile_1 --width 640 --height 360 --url rtsp://%s/ch0_1.h264 --type H264"
+    onvif_srvd --pid_file /var/run/onvif_srvd.pid --model "Yi Hack" --manufacturer "Yi" --firmware_ver "$YI_HACK_VER" --hardware_id $HW_ID --serial_num $SERIAL_NUMBER --ifs wlan0 --port $ONVIF_PORT --scope onvif://www.onvif.org/Profile/S $ONVIF_PROFILE_0 $ONVIF_PROFILE_1
+
+    if [[ $(get_config ONVIF_WSDD) == "yes" ]] ; then
+        wsdd --pid_file /var/run/wsdd.pid --if_name wlan0 --type tdn:NetworkVideoTransmitter --xaddr http://%s:$ONVIF_PORT --scope "onvif://www.onvif.org/name/Unknown onvif://www.onvif.org/Profile/Streaming"
+    fi
+fi
+
 sleep 25 && camhash > /tmp/camhash &
 
 # First run on startup, then every day via crond

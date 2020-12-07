@@ -163,6 +163,10 @@ Special thanks to the following people and projects, without them `yi-hack-v4` w
 - @dvv - [Ideas for the RSTP stream](https://github.com/shadow-1/yi-hack-v3/issues/126)
 - @andy2301 - [Ideas for the RSTP rtsp and rtsp2301](https://github.com/xmflsct/yi-hack-1080p/issues/5#issuecomment-294326131)
 
+## Acknowledgments #2
+As much as TheCrypt0 has made it possible for the 'yi-hack-v4', the latest features are based on the work from:
+- @roleoroleo - [https://github.com/roleoroleo](https://github.com/roleoroleo)
+
 ---
 ### DISCLAIMER
 **I AM NOT RESPONSIBLE FOR ANY USE OR DAMAGE THIS SOFTWARE MAY CAUSE. THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.**

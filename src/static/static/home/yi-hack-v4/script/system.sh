@@ -80,6 +80,18 @@ if [[ $(get_config RTSP) == "yes" ]] ; then
         rtspv4 -D -S
     fi
 fi
+if [[ $(get_config RTSP) == "yes" ]] ; then
+#    if [[ -f "$YI_HACK_PREFIX/bin/viewd" && -f "$YI_HACK_PREFIX/bin/rtspv4" ]]
+#        viewd -D -S
+#        rtspv4 -D -S
+#    fi
+
+if [[ -f "$YI_HACK_PREFIX/bin/h264grabber" && -f $YI_HACK_PPREFIX/bin/rRTSPServer" ]] ; then
+    h264grabber -f &
+    RRTSP_RES=both rRTSPServer &
+fi
+
+fi
 
 #ToDo
 #SERIAL_NUMBER=$(dd status=none bs=1 count=20 skip=661 if=/tmp/mmap.info)

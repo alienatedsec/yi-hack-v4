@@ -75,12 +75,6 @@ if [[ $(get_config MQTT) == "yes" ]] ; then
 fi
 
 if [[ $(get_config RTSP) == "yes" ]] ; then
-    if [[ -f "$YI_HACK_PREFIX/bin/viewd" && -f "$YI_HACK_PREFIX/bin/rtspv4" ]] ; then
-        viewd -D -S
-        rtspv4 -D -S
-    fi
-fi
-if [[ $(get_config RTSP) == "yes" ]] ; then
 #    if [[ -f "$YI_HACK_PREFIX/bin/viewd" && -f "$YI_HACK_PREFIX/bin/rtspv4" ]]
 #        viewd -D -S
 #        rtspv4 -D -S

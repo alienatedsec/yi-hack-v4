@@ -81,8 +81,10 @@ if [[ $(get_config RTSP) == "yes" ]] ; then
 #    fi
 
 if [[ -f "$YI_HACK_PREFIX/bin/h264grabber" && -f "$YI_HACK_PPREFIX/bin/rRTSPServer" ]] ; then
-    h264grabber -f &
+    h264grabber_l -f &
+    h264grabber_h -f &
     RRTSP_RES=both rRTSPServer &
+
 fi
 fi
 

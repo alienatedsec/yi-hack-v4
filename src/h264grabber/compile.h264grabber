@@ -29,10 +29,10 @@ cp ./h264grabber ../_install/bin || exit 1
 
 ${STRIP} ../_install/bin/* || exit 1
 
-cd ../_install/bin/
-if [ ! -f h264grabber_h ]; then
-    ln -s h264grabber h264grabber_h
-fi
-if [ ! -f h264grabber_l ]; then
-    ln -s h264grabber h264grabber_l
-fi
+#cd ../_install/bin/
+#if [ ! -f h264grabber_h ]; then
+#    ln -s h264grabber h264grabber_h
+#fi
+#if [ ! -f h264grabber_l ]; then
+#    ln -s h264grabber h264grabber_l
+#fi

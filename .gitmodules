@@ -16,9 +16,6 @@
 [submodule "src/uClibc++/uClibc++"]
 	path = src/uClibc++/uClibc++
 	url = https://git.busybox.net/uClibc++
-[submodule "src/libfuse/libfuse"]
-	path = src/libfuse/libfuse
-	url = https://github.com/libfuse/libfuse.git
 [submodule "src/mosquitto/mosquitto"]
 	path = src/mosquitto/mosquitto
 	url = https://github.com/eclipse/mosquitto.git
@@ -28,3 +25,6 @@
 [submodule "src/wsdd/wsdd"]
 	path = src/wsdd/wsdd
 	url = https://github.com/KoynovStas/wsdd.git
+[submodule "src/libfuse/libfuse"]
+	path = src/libfuse/libfuse
+	url = https://github.com/libfuse/libfuse.git

@@ -2,18 +2,6 @@
 <p align="center">
 	<img height="200" src="https://raw.githubusercontent.com/TheCrypt0/yi-hack-v4/master/imgs/yi-hack-v4-header.png">
 </p>
-<p align="center">
-	<a target="_blank" href="https://discord.gg/upPsFWZ">
-        	<img src="https://img.shields.io/discord/530507539696189477.svg?logo=discord" alt="Official Discord Server">
-	</a>
-	<a target="_blank" href="https://github.com/TheCrypt0/yi-hack-v4/releases">
-		<img src="https://img.shields.io/github/downloads/TheCrypt0/yi-hack-v4/total.svg" alt="Releases Downloads">
-	</a>
-	<a target="_blank" href="https://trello.com/b/EtuK8577/yi-hack-v4">
-		<img src="https://img.shields.io/badge/Trello-yi--hack--v4-blue.svg" alt="Trello Board">
-	</a>
-	<img src="https://img.shields.io/github/license/TheCrypt0/yi-hack-v4.svg">
-</p>
 
 ## Why another Yi firmware?
 
@@ -25,7 +13,7 @@ Since then I fixed some issues with Xiaomi's H264 encoder that happened to hang 
 
 Now everything works as it should and the app functionalities are intact (but they can be disabled if you want).
 
-Tested on the following platforms (but it should work with anything that accepts an RTSP stream:
+Tested on the following platforms (but it should work with anything that accepts an RTSP stream):
 - Home Assistant
 - Shinobi
 - Zoneminder
@@ -72,12 +60,12 @@ This firmware will add the following features:
 
 Currently this project supports the following cameras:
 
-- Yi Home 17CN / 27US / 47US
-- Yi 1080p Home
-- Yi Dome
-- Yi 1080p Dome
-- Yi 1080p Cloud Dome
-- Yi 1080p Outdoor
+- Yi 1080p Home 48US - confirmed but issues are still there / currently testing
+- Yi Home 17CN / 27US / 47US - not confirmed / will be tested soon
+- Yi Dome - not confirmed / will be tested soon
+- Yi 1080p Dome - not confirmed / I have no device to test
+- Yi 1080p Cloud Dome - not confirmed / I have no device to test
+- Yi 1080p Outdoor - not confirmed / I have no device to test
 
 ## Getting Started
 1. Check that you have a correct Xiaomi Yi camera. (see the section above)

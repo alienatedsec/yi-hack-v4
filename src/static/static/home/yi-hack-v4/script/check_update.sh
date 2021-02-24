@@ -17,7 +17,7 @@ get_config()
 MAX_RETRY=10
 N_RETRY=0
 
-REMOTE_VERSION_URL=https://raw.githubusercontent.com/TheCrypt0/yi-hack-v4/master/VERSION
+REMOTE_VERSION_URL=https://raw.githubusercontent.com/alienatedsec/yi-hack-v4/master/VERSION
 REMOTE_VERSION_FILE=/tmp/.hackremotever
 REMOTE_NEWVERSION_FILE=/tmp/.hacknewver
 

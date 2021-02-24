@@ -37,7 +37,7 @@ This firmware will add the following features:
 
 - **NEW FEATURES**
   - **NEW CAMERAS SUPPORTED**: Yi Outdoor 1080p and Yi Cloud Dome 1080p.
-  - **RTSP server** - which will allow a RTSP stream of the video while keeping the cloud features enabled (available to the supporters of the project).
+  - **RTSP server** - which will allow a RTSP stream of the video while keeping the cloud features enabled (available to all and its free).
   - viewd - a daemon to check the `/tmp/view` buffer heads/tails location (needed by the RTSP).
   - **MQTT** - detect motion directly from your home server!
   - WebServer - user-friendly stats and configurations.
@@ -45,7 +45,7 @@ This firmware will add the following features:
   - Telnet server -  _Disabled by default._
   - FTP server -  _Enabled by default._
   - Web server -  _Enabled by default._
-  - The possibility to change some camera settings (copied from official app):
+  - The possibility to change some camera settings (copied from the official app):
     - camera on/off
     - video saving mode
     - detection sensitivity

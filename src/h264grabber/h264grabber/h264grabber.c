@@ -34,18 +34,31 @@
 #include <getopt.h>
 #include <signal.h>
 
-#define TABLE_HIGH_OFFSET 0x10
-#define TABLE_LOW_OFFSET 0x25A0
-#define TABLE_LENGTH 9600
-#define TABLE_RECORD_SIZE 32
-#define TABLE_RECORD_NUM 300
-#define BUF_SIZE 1586752
-#define STREAM_HIGH_OFFSET 0x9640
-#define STREAM_LOW_OFFSET 0x109640
+// yi_home_1080p
+#define TABLE_HIGH_OFFSET_YI_HOME_1080P 0x10
+#define TABLE_LOW_OFFSET_YI_HOME_1080P 0x25A0
+//#define TABLE_LENGTH_YI_HOME_1080P 9600
+#define TABLE_RECORD_SIZE_YI_HOME_1080P 32
+#define TABLE_RECORD_NUM_YI_HOME_1080P 300
+#define BUF_SIZE_YI_HOME_1080P 1586752
+#define STREAM_HIGH_OFFSET_YI_HOME_1080P 0x9640
+#define STREAM_LOW_OFFSET_YI_HOME_1080P 0x109640
+#define FRAME_COUNTER_OFFSET_YI_HOME_1080P 18
+#define FRAME_OFFSET_OFFSET_YI_HOME_1080P 4
+#define FRAME_LENGTH_OFFSET_YI_HOME_1080P 8
 
-#define FRAME_COUNTER_OFFSET 18
-#define FRAME_OFFSET_OFFSET 4
-#define FRAME_LENGTH_OFFSET 8
+// yi_dome_720p
+#define TABLE_HIGH_OFFSET_YI_DOME_720P 0x10
+#define TABLE_LOW_OFFSET_YI_DOME_720P 0x1920
+//#define TABLE_LENGTH_YI_DOME_720P 6400
+#define TABLE_RECORD_SIZE_YI_DOME_720P 32
+#define TABLE_RECORD_NUM_YI_DOME_720P 200
+#define BUF_SIZE_YI_DOME_720P 654400
+#define STREAM_HIGH_OFFSET_YI_DOME_720P 0x6440
+#define STREAM_LOW_OFFSET_YI_DOME_720P 0x6A440
+#define FRAME_COUNTER_OFFSET_YI_DOME_720P 18
+#define FRAME_OFFSET_OFFSET_YI_DOME_720P 4
+#define FRAME_LENGTH_OFFSET_YI_DOME_720P 8
 
 #define MILLIS_10 10000
 
@@ -112,18 +125,44 @@ int main(int argc, char **argv) {
     int i, c;
     mode_t mode = 0755;
 
-    table_offset = TABLE_HIGH_OFFSET;
-    stream_offset = STREAM_HIGH_OFFSET;
+    int table_high_offset;
+    int table_low_offset;
+//    int table_length;
+    int table_record_size;
+    int table_record_num;
+    int buf_size;
+    int stream_high_offset;
+    int stream_low_offset;
+    int frame_counter_offset;
+    int frame_offset_offset;
+    int frame_length_offset;
 
     unsigned char *addr;
     int resolution = RESOLUTION_HIGH;
     int debug = 0;
     int fifo = 0;
 
+    // Settings default
+    table_high_offset = TABLE_HIGH_OFFSET_YI_HOME_1080P;
+    table_low_offset = TABLE_LOW_OFFSET_YI_HOME_1080P;
+//    table_length = TABLE_LENGTH_YI_HOME_1080P;
+    table_record_size = TABLE_RECORD_SIZE_YI_HOME_1080P;
+    table_record_num = TABLE_RECORD_NUM_YI_HOME_1080P;
+    buf_size = BUF_SIZE_YI_HOME_1080P;
+    stream_high_offset = STREAM_HIGH_OFFSET_YI_HOME_1080P;
+    stream_low_offset = STREAM_LOW_OFFSET_YI_HOME_1080P;
+    frame_counter_offset = FRAME_COUNTER_OFFSET_YI_HOME_1080P;
+    frame_offset_offset = FRAME_OFFSET_OFFSET_YI_HOME_1080P;
+    frame_length_offset = FRAME_LENGTH_OFFSET_YI_HOME_1080P;
+
+    table_offset = TABLE_HIGH_OFFSET_YI_HOME_1080P;
+    stream_offset = STREAM_HIGH_OFFSET_YI_HOME_1080P;
+
     while (1) {
         static struct option long_options[] =
         {
             {"resolution",  required_argument, 0, 'r'},
+            {"model",  required_argument, 0, 'm'},
             {"fifo",  no_argument, 0, 'f'},
             {"debug",  no_argument, 0, 'd'},
             {"help",  no_argument, 0, 'h'},
@@ -132,7 +171,7 @@ int main(int argc, char **argv) {
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long (argc, argv, "r:fdh",
+        c = getopt_long (argc, argv, "r:m:fdh",
                          long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -145,6 +184,34 @@ int main(int argc, char **argv) {
                 resolution = RESOLUTION_LOW;
             } else if (strcasecmp("high", optarg) == 0) {
                 resolution = RESOLUTION_HIGH;
+            }
+            break;
+
+        case 'm':
+            if (strcasecmp("yi_home_1080p", optarg) == 0) {
+                table_high_offset = TABLE_HIGH_OFFSET_YI_HOME_1080P;
+                table_low_offset = TABLE_LOW_OFFSET_YI_HOME_1080P;
+//                table_length = TABLE_LENGTH_YI_HOME_1080P;
+                table_record_size = TABLE_RECORD_SIZE_YI_HOME_1080P;
+                table_record_num = TABLE_RECORD_NUM_YI_HOME_1080P;
+                buf_size = BUF_SIZE_YI_HOME_1080P;
+                stream_high_offset = STREAM_HIGH_OFFSET_YI_HOME_1080P;
+                stream_low_offset = STREAM_LOW_OFFSET_YI_HOME_1080P;
+                frame_counter_offset = FRAME_COUNTER_OFFSET_YI_HOME_1080P;
+                frame_offset_offset = FRAME_OFFSET_OFFSET_YI_HOME_1080P;
+                frame_length_offset = FRAME_LENGTH_OFFSET_YI_HOME_1080P;
+            } else if (strcasecmp("yi_dome_720p", optarg) == 0) {
+                table_high_offset = TABLE_HIGH_OFFSET_YI_DOME_720P;
+                table_low_offset = TABLE_LOW_OFFSET_YI_DOME_720P;
+//                table_length = TABLE_LENGTH_YI_DOME_720P;
+                table_record_size = TABLE_RECORD_SIZE_YI_DOME_720P;
+                table_record_num = TABLE_RECORD_NUM_YI_DOME_720P;
+                buf_size = BUF_SIZE_YI_DOME_720P;
+                stream_high_offset = STREAM_HIGH_OFFSET_YI_DOME_720P;
+                stream_low_offset = STREAM_LOW_OFFSET_YI_DOME_720P;
+                frame_counter_offset = FRAME_COUNTER_OFFSET_YI_DOME_720P;
+                frame_offset_offset = FRAME_OFFSET_OFFSET_YI_DOME_720P;
+                frame_length_offset = FRAME_LENGTH_OFFSET_YI_DOME_720P;
             }
             break;
 
@@ -180,12 +247,12 @@ int main(int argc, char **argv) {
     }
 
     if (resolution == RESOLUTION_LOW) {
-        table_offset = TABLE_LOW_OFFSET;
-        stream_offset = STREAM_LOW_OFFSET;
+        table_offset = table_low_offset;
+        stream_offset = stream_low_offset;
         fprintf(stderr, "Resolution low\n");
     } else if (resolution == RESOLUTION_HIGH) {
-        table_offset = TABLE_HIGH_OFFSET;
-        stream_offset = STREAM_HIGH_OFFSET;
+        table_offset = table_high_offset;
+        stream_offset = stream_high_offset;
         fprintf(stderr, "Resolution high\n");
     }
 
@@ -197,13 +264,13 @@ int main(int argc, char **argv) {
     }
 
     // Map file to memory
-    addr = (unsigned char*) mmap(NULL, BUF_SIZE, PROT_READ, MAP_SHARED, fileno(fFid), 0);
+    addr = (unsigned char*) mmap(NULL, buf_size, PROT_READ, MAP_SHARED, fileno(fFid), 0);
     if (addr == MAP_FAILED) {
         fprintf(stderr, "Error mapping file %s\n", BUFFER_FILE);
         fclose(fFid);
         return -2;
     }
-    if (debug) fprintf(stderr, "%lld - mapping file %s, size %d, to %08x\n", current_timestamp(), BUFFER_FILE, BUF_SIZE, (unsigned int) addr);
+    if (debug) fprintf(stderr, "%lld - mapping file %s, size %d, to %08x\n", current_timestamp(), BUFFER_FILE, buf_size, (unsigned int) addr);
 
     // Closing the file
     if (debug) fprintf(stderr, "%lld - closing the file %s\n", current_timestamp(), BUFFER_FILE) ;
@@ -247,12 +314,12 @@ int main(int argc, char **argv) {
     // Find the record with the largest frame_counter
     current_frame = -1;
     frame_counter = -1;
-    for (i = 0; i < TABLE_RECORD_NUM; i++) {
+    for (i = 0; i < table_record_num; i++) {
         // Get pointer to the record
-        record_ptr = addr + table_offset + (i * TABLE_RECORD_SIZE);
+        record_ptr = addr + table_offset + (i * table_record_size);
         // Get the frame counter
-        frame_counter_tmp = (((int) *(record_ptr + FRAME_COUNTER_OFFSET + 1)) << 8) +
-                    ((int) *(record_ptr + FRAME_COUNTER_OFFSET));
+        frame_counter_tmp = (((int) *(record_ptr + frame_counter_offset + 1)) << 8) +
+                    ((int) *(record_ptr + frame_counter_offset));
         // Check if the is the largest frame_counter
         if (frame_counter_tmp > frame_counter) {
             frame_counter = frame_counter_tmp;
@@ -266,40 +333,37 @@ int main(int argc, char **argv) {
     // Wait for the next record to arrive and read the frame
     for (;;) {
         // Get pointer to the record
-        record_ptr = addr + table_offset + (current_frame * TABLE_RECORD_SIZE);
+        record_ptr = addr + table_offset + (current_frame * table_record_size);
         if (debug) fprintf(stderr, "%lld - processing frame %d\n", current_timestamp(), current_frame);
         // Check if we are at the end of the table
-        if (current_frame == TABLE_RECORD_NUM - 1) {
+        if (current_frame == table_record_num - 1) {
             next_record_ptr = addr + table_offset;
             if (debug) fprintf(stderr, "%lld - rewinding circular table\n", current_timestamp());
         } else {
-            next_record_ptr = record_ptr + TABLE_RECORD_SIZE;
+            next_record_ptr = record_ptr + table_record_size;
         }
         // Get the frame counter of the next record
-        next_frame_counter = ((int) *(next_record_ptr + FRAME_COUNTER_OFFSET + 1)) * 256 + ((int) *(next_record_ptr + FRAME_COUNTER_OFFSET));
+        next_frame_counter = ((int) *(next_record_ptr + frame_counter_offset + 1)) * 256 + ((int) *(next_record_ptr + frame_counter_offset));
         // Check if the frame counter is valid
         if (next_frame_counter >= frame_counter + 1) {
             // Get the offset of the stream
-            frame_offset = (((int) *(record_ptr + FRAME_OFFSET_OFFSET + 3)) << 24) +
-                        (((int) *(record_ptr + FRAME_OFFSET_OFFSET + 2)) << 16) +
-                        (((int) *(record_ptr + FRAME_OFFSET_OFFSET + 1)) << 8) +
-                        ((int) *(record_ptr + FRAME_OFFSET_OFFSET));
-//            next_frame_offset = ((((((next_*record_ptr + FRAME_OFFSET_OFFSET + 3) * 256) + (next_*record_ptr + FRAME_OFFSET_OFFSET + 2)) * 256) +
-//                        (next_*record_ptr + FRAME_OFFSET_OFFSET + 1)) * 256) + (next_*record_ptr + FRAME_OFFSET_OFFSET);
+            frame_offset = (((int) *(record_ptr + frame_offset_offset + 3)) << 24) +
+                        (((int) *(record_ptr + frame_offset_offset + 2)) << 16) +
+                        (((int) *(record_ptr + frame_offset_offset + 1)) << 8) +
+                        ((int) *(record_ptr + frame_offset_offset));
             // Get the pointer to the frame address
             frame_ptr = addr + stream_offset + frame_offset;
-//            next_frame_ptr = STREAM_HIGH_OFFSET + next_frame_offset;
             // Get the length of the frame
-            frame_length = (((int) *(record_ptr + FRAME_LENGTH_OFFSET + 3)) << 24) +
-                        (((int) *(record_ptr + FRAME_LENGTH_OFFSET + 2)) << 16) +
-                        (((int) *(record_ptr + FRAME_LENGTH_OFFSET + 1)) << 8) +
-                        ((int) *(record_ptr + FRAME_LENGTH_OFFSET));
+            frame_length = (((int) *(record_ptr + frame_length_offset + 3)) << 24) +
+                        (((int) *(record_ptr + frame_length_offset + 2)) << 16) +
+                        (((int) *(record_ptr + frame_length_offset + 1)) << 8) +
+                        ((int) *(record_ptr + frame_length_offset));
             if (debug) fprintf(stderr, "%lld - writing frame: frame_offset %d, frame_ptr %08x, frame_length %d\n", current_timestamp(), frame_offset, (unsigned int) frame_ptr, frame_length);
             // Write the frame
             fwrite(frame_ptr, 1, frame_length, fOut);
 
             // Check if we are at the end of the table
-            if (current_frame == TABLE_RECORD_NUM - 1) {
+            if (current_frame == table_record_num - 1) {
                 current_frame = 0;
             } else {
                 current_frame++;
@@ -324,10 +388,10 @@ int main(int argc, char **argv) {
     }
 
     // Unmap file from memory
-    if (munmap(addr, BUF_SIZE) == -1) {
+    if (munmap(addr, buf_size) == -1) {
         if (debug) fprintf(stderr, "Error munmapping file\n");
     } else {
-        if (debug) fprintf(stderr, "Unmapping file %s, size %d, from %08x\n", BUFFER_FILE, BUF_SIZE, (unsigned int) addr);
+        if (debug) fprintf(stderr, "Unmapping file %s, size %d, from %08x\n", BUFFER_FILE, buf_size, (unsigned int) addr);
     }
 
     return 0;

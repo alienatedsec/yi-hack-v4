@@ -1,1 +1,1 @@
-12 2 * * * /home/yi-hack-v4/script/check_update.sh
+1 1 * * * /home/yi-hack-v4/script/check_update.sh

@@ -1,9 +1,10 @@
 #!/bin/sh
-
-if [ -d "/usr/yi-hack-v4" ]; then
+if [ -d "/home/yi-hack-null" ]; then
+        YI_HACK_PREFIX="/tmp/sd/yi-hack-null" 
+elif [ -d "/usr/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/usr/yi-hack-v4"
 elif [ -d "/home/yi-hack-v4" ]; then
-        YI_HACK_PREFIX="/home/yi-hack-v4"
+        YI_HACK_PREFIX="/home/yi-hack-v4"       
 fi
 
 get_conf_type()
@@ -32,13 +33,16 @@ printf "{\n"
 while IFS= read -r LINE ; do
     if [ ! -z $LINE ] ; then
         if [ "$LINE" == "${LINE#\#}" ] ; then # skip comments
-            printf "\"%s\",\n" $(echo "$LINE" | sed -r 's/=/":"/g') # Format to json and replace = with ":"
+   #         printf "\"%s\",\n" $(echo "$LINE" | sed -r 's/=/":"/g') # Format to json and replace = with ":"
+            echo -n "\""
+            echo -n "$LINE" | sed -r 's/=/":"/g;'
+            echo "\","
         fi
     fi
 done < "$CONF_FILE"
 
-if [ $CONF_TYPE == "system" ] ; then
-    printf "\"%s\":\"%s\",\n"  "HOSTNAME" "$(cat /etc/hostname)"
+if [ "$CONF_TYPE" == "system" ] ; then
+    printf "\"%s\":\"%s\",\n"  "HOSTNAME" "$(cat $YI_HACK_PREFIX/etc/hostname | sed -r 's/\\/\\\\/g;s/"/\\"/g;')"
 fi
 
 # Empty values to "close" the json

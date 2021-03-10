@@ -34,10 +34,21 @@
 #include <getopt.h>
 #include <signal.h>
 
+// yi_home
+#define TABLE_HIGH_OFFSET_YI_HOME 0x10
+#define TABLE_LOW_OFFSET_YI_HOME 0x25A0
+#define TABLE_RECORD_SIZE_YI_HOME 32
+#define TABLE_RECORD_NUM_YI_HOME 300
+#define BUF_SIZE_YI_HOME 781120
+#define STREAM_HIGH_OFFSET_YI_HOME 0x4B40
+#define STREAM_LOW_OFFSET_YI_HOME 0x81B40
+#define FRAME_COUNTER_OFFSET_YI_HOME 18
+#define FRAME_OFFSET_OFFSET_YI_HOME 4
+#define FRAME_LENGTH_OFFSET_YI_HOME 8
+
 // yi_home_1080p
 #define TABLE_HIGH_OFFSET_YI_HOME_1080P 0x10
 #define TABLE_LOW_OFFSET_YI_HOME_1080P 0x25A0
-//#define TABLE_LENGTH_YI_HOME_1080P 9600
 #define TABLE_RECORD_SIZE_YI_HOME_1080P 32
 #define TABLE_RECORD_NUM_YI_HOME_1080P 300
 #define BUF_SIZE_YI_HOME_1080P 1586752
@@ -50,7 +61,6 @@
 // yi_dome_720p
 #define TABLE_HIGH_OFFSET_YI_DOME_720P 0x10
 #define TABLE_LOW_OFFSET_YI_DOME_720P 0x1920
-//#define TABLE_LENGTH_YI_DOME_720P 6400
 #define TABLE_RECORD_SIZE_YI_DOME_720P 32
 #define TABLE_RECORD_NUM_YI_DOME_720P 200
 #define BUF_SIZE_YI_DOME_720P 654400
@@ -79,11 +89,6 @@ unsigned char PFR_START[]         = {0x00, 0x00, 0x00, 0x01, 0x61};
 unsigned char SPS_START[]         = {0x00, 0x00, 0x00, 0x01, 0x67};
 unsigned char PPS_START[]         = {0x00, 0x00, 0x00, 0x01, 0x68};
 
-//unsigned char *addr;                      /* Pointer to shared memory region (header) */
-//int resolution;
-//int debug;
-//int fifo;
-
 long long current_timestamp() {
     struct timeval te; 
     gettimeofday(&te, NULL); // get current time
@@ -102,6 +107,8 @@ void print_usage(char *progname)
     fprintf(stderr, "\nUsage: %s [-r RES] [-d]\n\n", progname);
     fprintf(stderr, "\t-r RES, --resolution RES\n");
     fprintf(stderr, "\t\tset resolution: LOW or HIGH (default HIGH)\n");
+    fprintf(stderr, "\t-m MODEL, --model MODEL\n");
+    fprintf(stderr, "\t\tselect cam model: yi_home, yi_home_1080 or yi_dome_720p\n");
     fprintf(stderr, "\t-f, --fifo\n");
     fprintf(stderr, "\t\tenable fifo output\n");
     fprintf(stderr, "\t-d, --debug\n");
@@ -127,7 +134,6 @@ int main(int argc, char **argv) {
 
     int table_high_offset;
     int table_low_offset;
-//    int table_length;
     int table_record_size;
     int table_record_num;
     int buf_size;
@@ -145,7 +151,6 @@ int main(int argc, char **argv) {
     // Settings default
     table_high_offset = TABLE_HIGH_OFFSET_YI_HOME_1080P;
     table_low_offset = TABLE_LOW_OFFSET_YI_HOME_1080P;
-//    table_length = TABLE_LENGTH_YI_HOME_1080P;
     table_record_size = TABLE_RECORD_SIZE_YI_HOME_1080P;
     table_record_num = TABLE_RECORD_NUM_YI_HOME_1080P;
     buf_size = BUF_SIZE_YI_HOME_1080P;
@@ -188,10 +193,20 @@ int main(int argc, char **argv) {
             break;
 
         case 'm':
-            if (strcasecmp("yi_home_1080p", optarg) == 0) {
+            if (strcasecmp("yi_home", optarg) == 0) {
+                table_high_offset = TABLE_HIGH_OFFSET_YI_HOME;
+                table_low_offset = TABLE_LOW_OFFSET_YI_HOME;
+                table_record_size = TABLE_RECORD_SIZE_YI_HOME;
+                table_record_num = TABLE_RECORD_NUM_YI_HOME;
+                buf_size = BUF_SIZE_YI_HOME;
+                stream_high_offset = STREAM_HIGH_OFFSET_YI_HOME;
+                stream_low_offset = STREAM_LOW_OFFSET_YI_HOME;
+                frame_counter_offset = FRAME_COUNTER_OFFSET_YI_HOME;
+                frame_offset_offset = FRAME_OFFSET_OFFSET_YI_HOME;
+                frame_length_offset = FRAME_LENGTH_OFFSET_YI_HOME;
+            } else if (strcasecmp("yi_home_1080p", optarg) == 0) {
                 table_high_offset = TABLE_HIGH_OFFSET_YI_HOME_1080P;
                 table_low_offset = TABLE_LOW_OFFSET_YI_HOME_1080P;
-//                table_length = TABLE_LENGTH_YI_HOME_1080P;
                 table_record_size = TABLE_RECORD_SIZE_YI_HOME_1080P;
                 table_record_num = TABLE_RECORD_NUM_YI_HOME_1080P;
                 buf_size = BUF_SIZE_YI_HOME_1080P;
@@ -203,7 +218,6 @@ int main(int argc, char **argv) {
             } else if (strcasecmp("yi_dome_720p", optarg) == 0) {
                 table_high_offset = TABLE_HIGH_OFFSET_YI_DOME_720P;
                 table_low_offset = TABLE_LOW_OFFSET_YI_DOME_720P;
-//                table_length = TABLE_LENGTH_YI_DOME_720P;
                 table_record_size = TABLE_RECORD_SIZE_YI_DOME_720P;
                 table_record_num = TABLE_RECORD_NUM_YI_DOME_720P;
                 buf_size = BUF_SIZE_YI_DOME_720P;

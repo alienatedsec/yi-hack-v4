@@ -70,6 +70,18 @@
 #define FRAME_OFFSET_OFFSET_YI_DOME_720P 4
 #define FRAME_LENGTH_OFFSET_YI_DOME_720P 8
 
+// yi_outdoor
+#define TABLE_HIGH_OFFSET_YI_OUTDOOR 0x10
+#define TABLE_LOW_OFFSET_YI_OUTDOOR 0x25A0
+#define TABLE_RECORD_SIZE_YI_OUTDOOR 32
+#define TABLE_RECORD_NUM_YI_OUTDOOR 300
+#define BUF_SIZE_YI_OUTDOOR 1586752
+#define STREAM_HIGH_OFFSET_YI_OUTDOOR 0x9640
+#define STREAM_LOW_OFFSET_YI_OUTDOOR 0x109640
+#define FRAME_COUNTER_OFFSET_YI_OUTDOOR 18
+#define FRAME_OFFSET_OFFSET_YI_OUTDOOR 4
+#define FRAME_LENGTH_OFFSET_YI_OUTDOOR 8
+
 #define MILLIS_10 10000
 
 #define RESOLUTION_NONE 0
@@ -108,7 +120,7 @@ void print_usage(char *progname)
     fprintf(stderr, "\t-r RES, --resolution RES\n");
     fprintf(stderr, "\t\tset resolution: LOW or HIGH (default HIGH)\n");
     fprintf(stderr, "\t-m MODEL, --model MODEL\n");
-    fprintf(stderr, "\t\tselect cam model: yi_home, yi_home_1080 or yi_dome_720p\n");
+    fprintf(stderr, "\t\tselect cam model: yi_home, yi_home_1080, yi_dome_720p or yi_outdoor\n");
     fprintf(stderr, "\t-f, --fifo\n");
     fprintf(stderr, "\t\tenable fifo output\n");
     fprintf(stderr, "\t-d, --debug\n");
@@ -226,6 +238,17 @@ int main(int argc, char **argv) {
                 frame_counter_offset = FRAME_COUNTER_OFFSET_YI_DOME_720P;
                 frame_offset_offset = FRAME_OFFSET_OFFSET_YI_DOME_720P;
                 frame_length_offset = FRAME_LENGTH_OFFSET_YI_DOME_720P;
+            } else if (strcasecmp("yi_outdoor", optarg) == 0) {
+                table_high_offset = TABLE_HIGH_OFFSET_YI_OUTDOOR;
+                table_low_offset = TABLE_LOW_OFFSET_YI_OUTDOOR;
+                table_record_size = TABLE_RECORD_SIZE_YI_OUTDOOR;
+                table_record_num = TABLE_RECORD_NUM_YI_OUTDOOR;
+                buf_size = BUF_SIZE_YI_OUTDOOR;
+                stream_high_offset = STREAM_HIGH_OFFSET_YI_OUTDOOR;
+                stream_low_offset = STREAM_LOW_OFFSET_YI_OUTDOOR;
+                frame_counter_offset = FRAME_COUNTER_OFFSET_YI_OUTDOOR;
+                frame_offset_offset = FRAME_OFFSET_OFFSET_YI_OUTDOOR;
+                frame_length_offset = FRAME_LENGTH_OFFSET_YI_OUTDOOR;
             }
             break;
 

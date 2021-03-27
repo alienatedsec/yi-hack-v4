@@ -2,8 +2,8 @@
 
 CONF_FILE="etc/system.conf"
 
-if [ -d "/tmp/sd/yi-hack-null/" ]; then
-        YI_HACK_PREFIX="/tmp/sd/yi-hack-null"
+if [ -d "/tmp/sd/yi-hack-v4" ]; then
+        YI_HACK_PREFIX="/tmp/sd/yi-hack-v4"
 elif [ -d "/usr/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/usr/yi-hack-v4"
 elif [ -d "/home/yi-hack-v4" ]; then
@@ -16,8 +16,8 @@ get_config()
     grep -w $1 $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2
 }
 
-if [ -d "/tmp/sd/yi-hack-null/" ]; then
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lib:/home/yi-hack-v4/lib:/tmp/sd/yi-hack-null/lib
+if [ -d "/tmp/sd/yi-hack-v4/" ]; then
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lib:/home/yi-hack-v4/lib:/tmp/sd/yi-hack-v4/lib
 	export PATH=$PATH:/home/base/tools:/home/yi-hack-v4/bin:/home/yi-hack-v4/sbin:/tmp/sd/yi-hack-null/bin:/tmp/sd/yi-hack-null/sbin
 elif [ -d "/usr/yi-hack-v4" ]; then
 	export LD_LIBRARY_PATH=/home/libusr:$LD_LIBRARY_PATH:/usr/yi-hack-v4/lib:/home/hd1/yi-hack-v4/lib

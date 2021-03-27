@@ -196,6 +196,16 @@ compress_file "$TMP_DIR/home/app" rmm
 printf "Compressing yi-hack-v4... "
 7za a $TMP_DIR/home/yi-hack-v4/yi-hack-v4.7z $TMP_DIR/home/yi-hack-v4/* > /dev/null
 
+# copy files to the output dir
+echo ">>> Copying files to $OUT_DIR... "
+echo "    Copying files..."
+cp $TMP_DIR/home/yi-hack-v4/yi-hack-v4.7z $OUT_DIR
+echo "Copying files to the output folder - done!"
+
+# delete yi-hack-v4.7z before packing
+rm $TMP_DIR/home/yi-hack-v4/yi-hack-v4.7z
+echo "Deleteing of yi-hack-v4.7z - done!"
+
 # Delete all the compressed files except system_init.sh and yi-hack-v4.7z
 find $TMP_DIR/home/yi-hack-v4/script/ -maxdepth 0 ! -name 'system_init.sh' -type f -exec rm -f {} +
 find $TMP_DIR/home/yi-hack-v4/* -maxdepth 0 -type d ! -name 'script' -exec rm -rf {} +

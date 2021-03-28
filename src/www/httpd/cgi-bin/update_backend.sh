@@ -11,7 +11,7 @@ fi
 REMOTE_VERSION_FILE=/tmp/.hackremotever
 REMOTE_NEWVERSION_FILE=/tmp/.hacknewver
 
-LOCAL_VERSION_FILE=/home/yi-hack-v4/version
+LOCAL_VERSION_FILE=/tmp/sd/yi-hack-v4/version
 
 IS_SD_PRESENT="NO"
 

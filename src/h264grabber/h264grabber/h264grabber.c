@@ -58,17 +58,17 @@
 #define FRAME_OFFSET_OFFSET_YI_HOME_1080P 4
 #define FRAME_LENGTH_OFFSET_YI_HOME_1080P 8
 
-// yi_dome_720p
-#define TABLE_HIGH_OFFSET_YI_DOME_720P 0x10
-#define TABLE_LOW_OFFSET_YI_DOME_720P 0x1920
-#define TABLE_RECORD_SIZE_YI_DOME_720P 32
-#define TABLE_RECORD_NUM_YI_DOME_720P 200
-#define BUF_SIZE_YI_DOME_720P 654400
-#define STREAM_HIGH_OFFSET_YI_DOME_720P 0x6440
-#define STREAM_LOW_OFFSET_YI_DOME_720P 0x6A440
-#define FRAME_COUNTER_OFFSET_YI_DOME_720P 18
-#define FRAME_OFFSET_OFFSET_YI_DOME_720P 4
-#define FRAME_LENGTH_OFFSET_YI_DOME_720P 8
+// YI_DOME
+#define TABLE_HIGH_OFFSET_YI_DOME 0x10
+#define TABLE_LOW_OFFSET_YI_DOME 0x1920
+#define TABLE_RECORD_SIZE_YI_DOME 32
+#define TABLE_RECORD_NUM_YI_DOME 200
+#define BUF_SIZE_YI_DOME 654400
+#define STREAM_HIGH_OFFSET_YI_DOME 0x6440
+#define STREAM_LOW_OFFSET_YI_DOME 0x6A440
+#define FRAME_COUNTER_OFFSET_YI_DOME 18
+#define FRAME_OFFSET_OFFSET_YI_DOME 4
+#define FRAME_LENGTH_OFFSET_YI_DOME 8
 
 // yi_outdoor
 #define TABLE_HIGH_OFFSET_YI_OUTDOOR 0x10
@@ -120,7 +120,7 @@ void print_usage(char *progname)
     fprintf(stderr, "\t-r RES, --resolution RES\n");
     fprintf(stderr, "\t\tset resolution: LOW or HIGH (default HIGH)\n");
     fprintf(stderr, "\t-m MODEL, --model MODEL\n");
-    fprintf(stderr, "\t\tselect cam model: yi_home, yi_home_1080, yi_dome_720p or yi_outdoor\n");
+    fprintf(stderr, "\t\tselect cam model: yi_home, yi_home_1080, yi_dome or yi_outdoor\n");
     fprintf(stderr, "\t-f, --fifo\n");
     fprintf(stderr, "\t\tenable fifo output\n");
     fprintf(stderr, "\t-d, --debug\n");
@@ -227,17 +227,17 @@ int main(int argc, char **argv) {
                 frame_counter_offset = FRAME_COUNTER_OFFSET_YI_HOME_1080P;
                 frame_offset_offset = FRAME_OFFSET_OFFSET_YI_HOME_1080P;
                 frame_length_offset = FRAME_LENGTH_OFFSET_YI_HOME_1080P;
-            } else if (strcasecmp("yi_dome_720p", optarg) == 0) {
-                table_high_offset = TABLE_HIGH_OFFSET_YI_DOME_720P;
-                table_low_offset = TABLE_LOW_OFFSET_YI_DOME_720P;
-                table_record_size = TABLE_RECORD_SIZE_YI_DOME_720P;
-                table_record_num = TABLE_RECORD_NUM_YI_DOME_720P;
-                buf_size = BUF_SIZE_YI_DOME_720P;
-                stream_high_offset = STREAM_HIGH_OFFSET_YI_DOME_720P;
-                stream_low_offset = STREAM_LOW_OFFSET_YI_DOME_720P;
-                frame_counter_offset = FRAME_COUNTER_OFFSET_YI_DOME_720P;
-                frame_offset_offset = FRAME_OFFSET_OFFSET_YI_DOME_720P;
-                frame_length_offset = FRAME_LENGTH_OFFSET_YI_DOME_720P;
+            } else if (strcasecmp("YI_DOME", optarg) == 0) {
+                table_high_offset = TABLE_HIGH_OFFSET_YI_DOME;
+                table_low_offset = TABLE_LOW_OFFSET_YI_DOME;
+                table_record_size = TABLE_RECORD_SIZE_YI_DOME;
+                table_record_num = TABLE_RECORD_NUM_YI_DOME;
+                buf_size = BUF_SIZE_YI_DOME;
+                stream_high_offset = STREAM_HIGH_OFFSET_YI_DOME;
+                stream_low_offset = STREAM_LOW_OFFSET_YI_DOME;
+                frame_counter_offset = FRAME_COUNTER_OFFSET_YI_DOME;
+                frame_offset_offset = FRAME_OFFSET_OFFSET_YI_DOME;
+                frame_length_offset = FRAME_LENGTH_OFFSET_YI_DOME;
             } else if (strcasecmp("yi_outdoor", optarg) == 0) {
                 table_high_offset = TABLE_HIGH_OFFSET_YI_OUTDOOR;
                 table_low_offset = TABLE_LOW_OFFSET_YI_OUTDOOR;

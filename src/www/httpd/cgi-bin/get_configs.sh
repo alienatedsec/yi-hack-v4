@@ -1,10 +1,10 @@
 #!/bin/sh
-if [ -d "/home/yi-hack-null" ]; then
-        YI_HACK_PREFIX="/tmp/sd/yi-hack-null" 
+if [ -d "/tmp/sd/yi-hack-v4" ]; then
+        YI_HACK_PREFIX="/tmp/sd/yi-hack-v4"
 elif [ -d "/usr/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/usr/yi-hack-v4"
 elif [ -d "/home/yi-hack-v4" ]; then
-        YI_HACK_PREFIX="/home/yi-hack-v4"       
+        YI_HACK_PREFIX="/home/yi-hack-v4"
 fi
 
 get_conf_type()

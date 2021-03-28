@@ -13,12 +13,12 @@ mkdir -p ../../build/rootfs/sbin/
 arm-hisiv300-linux-uclibcgnueabi-strip ./_install/dropbearmulti
 rsync -a ./_install/dropbearmulti ../../build/home/yi-hack-v4/bin/
 
-ln -fs /home/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/bin/dbclient
-ln -fs /home/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/bin/dropbearconvert
-ln -fs /home/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/bin/dropbearkey
-ln -fs /home/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/bin/scp
+ln -fs /tmp/sd/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/bin/dbclient
+ln -fs /tmp/sd/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/bin/dropbearconvert
+ln -fs /tmp/sd/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/bin/dropbearkey
+ln -fs /tmp/sd/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/bin/scp
 ln -fs dbclient ../../build/rootfs/bin/ssh
 
 ln -fs /bin/dbclient ../../build/rootfs/usr/bin/dbclient
 
-ln -fs /home/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/sbin/dropbear
+ln -fs /tmp/sd/yi-hack-v4/bin/dropbearmulti ../../build/rootfs/sbin/dropbear

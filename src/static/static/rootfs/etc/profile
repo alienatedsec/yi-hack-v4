@@ -59,7 +59,7 @@ else
         echo " UPDATE: A new version is available."
         echo ""
         echo " You can download it from GitHub:"
-        echo " > https://github.com/TheCrypt0/yi-hack-v4/releases"
+        echo " > https://github.com/alienatedsec/yi-hack-v4/releases"
         echo " -----------------------------------------------------"
     elif [[ $NEW_VERSION == "no_currentversionisbeta" ]] ; then
         echo " WARNING: You are using an early-access version."

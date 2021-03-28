@@ -1,6 +1,10 @@
 #!/bin/sh
 
-if [ -d "/usr/yi-hack-v4" ]; then
+if [ -d "/tmp/sd/yi-hack-v4" ]; then
+    YI_HACK_V4_PREFIX="/tmp/sd"
+    YI_PREFIX="/tmp/sd/yi-hack-v4"
+    UDHCPC_SCRIPT_DEST="/tmp/sd/yi-hack-v4/script/default.script"
+elif [ -d "/usr/yi-hack-v4" ]; then
     YI_HACK_V4_PREFIX="/usr"
     YI_PREFIX="/home"
     UDHCPC_SCRIPT_DEST="/home/default.script"

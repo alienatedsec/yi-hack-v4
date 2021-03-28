@@ -227,7 +227,7 @@ int main(int argc, char **argv) {
                 frame_counter_offset = FRAME_COUNTER_OFFSET_YI_HOME_1080P;
                 frame_offset_offset = FRAME_OFFSET_OFFSET_YI_HOME_1080P;
                 frame_length_offset = FRAME_LENGTH_OFFSET_YI_HOME_1080P;
-            } else if (strcasecmp("YI_DOME", optarg) == 0) {
+            } else if (strcasecmp("yi_dome", optarg) == 0) {
                 table_high_offset = TABLE_HIGH_OFFSET_YI_DOME;
                 table_low_offset = TABLE_LOW_OFFSET_YI_DOME;
                 table_record_size = TABLE_RECORD_SIZE_YI_DOME;

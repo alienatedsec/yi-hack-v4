@@ -1,6 +1,7 @@
 #!/bin/sh
 
 CONF_FILE="etc/system.conf"
+MODEL_SUFFIX=$(cat /home/app/.camver)
 
 if [ -d "/tmp/sd/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/tmp/sd/yi-hack-v4"
@@ -81,16 +82,21 @@ fi
 
 ##ToDo -
 if [[ $(get_config RTSP) == "yes" ]] ; then
-RRTSP_MODEL=$MODEL_SUFFIX RRTSP_RES=$(get_config RTSP_STREAM)  &
+# todo - alien
+# RRTSP_MODEL=$MODEL_SUFFIX RRTSP_RES=$(get_config RTSP_STREAM)  &
 #    if [[ -f "$YI_HACK_PREFIX/bin/viewd" && -f "$YI_HACK_PREFIX/bin/rtspv4" ]]
 #        viewd -D -S
 #        rtspv4 -D -S
 #    fi
 
-if [[ -f "$YI_HACK_PREFIX/bin/h264grabber" && -f "$YI_HACK_PPREFIX/bin/rRTSPServer" ]] ; then
-	h264grabber -r low -f &
-	h264grabber -r high -f &
-	rRTSPServer -r both &
+if [[ $MODEL_SUFFIX == "yi_home_1080p" ]] ; then
+    h264grabber -m yi_home_1080p -r low -f &
+    h264grabber -m yi_hone_1080p -r high -f &
+    rRTSPServer -r both &
+else
+    h264grabber -m yi_dome_720p -r low -f &
+    h264grabber -m yi_dome_720p -r high -f &
+    rRTSPServer -r both &
 fi
 fi
 

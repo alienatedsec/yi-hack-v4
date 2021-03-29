@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -d "/tmp/sd/yi-hack-v4" ]; then
+if [ -f "/tmp/sd/yi-hack-v4.7z" ]; then
     YI_HACK_V4_PREFIX="/tmp/sd"
     YI_PREFIX="/tmp/sd/yi-hack-v4"
     UDHCPC_SCRIPT_DEST="/tmp/sd/yi-hack-v4/script/default.script"

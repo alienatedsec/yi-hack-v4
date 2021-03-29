@@ -252,6 +252,30 @@ int main(int argc, char **argv) {
             }
             break;
 
+        case 'table_offset':
+                table_offset2 = c;
+            break;
+        case 'table_record_size':
+                table_record_size2 = c;
+            break;
+        case 'table_record_num':
+                table_record_num2 = c;
+            break;
+        case 'buf_size':
+                buf_size2 = c;
+            break;
+        case 'stream_offset':
+                stream_offset2 = c;
+            break;
+        case 'frame_counter_offset':
+                frame_counter_offset2 = c;
+            break;
+        case 'frame_offset_offset':
+                frame_offset_offset2 = c;
+            break;
+        case 'frame_length_offset':
+                frame_length_offset2 = c;
+            break;
         case 'f':
             fprintf (stderr, "Using fifo as output\n");
             fifo = 1;
@@ -275,6 +299,39 @@ int main(int argc, char **argv) {
             print_usage(argv[0]);
             return -1;
         }
+    }
+  
+    if (table_offset2 > 0 ) {
+        if (resolution == RESOLUTION_HIGH) {
+            table_high_offset = table_offset2
+        else
+            table_low_offset = table_offset2
+        }
+    }
+    if (stream_offset2 > 0 ) {
+        if (resolution == RESOLUTION_HIGH) {
+            stream_high_offset = stream_offset2
+        else
+            stream_low_offset = stream_offset2
+        }
+    }
+    if (table_record_size2 > 0 ) {
+        table_record_size = table_record_size2
+    }
+    if (table_record_num2 > 0 ) {
+        table_record_num2 = table_record_num2
+    }
+    if (buf_size2 > 0 ) {
+        buf_size = buf_size2
+    }
+    if (frame_counter_offset2 > 0 ) {
+        frame_counter_offset = frame_counter_offset2
+    }
+    if (frame_offset_offset2 > 0 ) {
+        frame_offset_offset = frame_offset_offset2
+    }
+    if (frame_length_offset2 > 0 ) {
+        frame_length_offset = frame_length_offset2
     }
 
     if (strcmp("h264grabber_l", basename(argv[0])) == 0) {

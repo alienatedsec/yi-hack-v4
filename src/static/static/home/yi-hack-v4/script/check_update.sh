@@ -23,7 +23,7 @@ REMOTE_VERSION_URL=https://raw.githubusercontent.com/alienatedsec/yi-hack-v4/mas
 REMOTE_VERSION_FILE=/tmp/.hackremotever
 REMOTE_NEWVERSION_FILE=/tmp/.hacknewver
 
-LOCAL_VERSION_FILE=/home/yi-hack-v4/version
+LOCAL_VERSION_FILE=/tmp/sd/yi-hack-v4/version
 
 if [[ $(get_config CHECK_UPDATES) == "yes" ]] ; then
     while : ; do

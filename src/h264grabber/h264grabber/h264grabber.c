@@ -253,28 +253,28 @@ int main(int argc, char **argv) {
             break;
 
         case 'table_offset':
-                table_offset2 = c;
+                table_offset2 = stoi(optarg);
             break;
         case 'table_record_size':
-                table_record_size2 = c;
+                table_record_size2 = stoi(optarg);
             break;
         case 'table_record_num':
-                table_record_num2 = c;
+                table_record_num2 = stoi(optarg);
             break;
         case 'buf_size':
-                buf_size2 = c;
+                buf_size2 = stoi(optarg);
             break;
         case 'stream_offset':
-                stream_offset2 = c;
+                stream_offset2 = stoi(optarg);
             break;
         case 'frame_counter_offset':
-                frame_counter_offset2 = c;
+                frame_counter_offset2 = stoi(optarg);
             break;
         case 'frame_offset_offset':
-                frame_offset_offset2 = c;
+                frame_offset_offset2 = stoi(optarg);
             break;
         case 'frame_length_offset':
-                frame_length_offset2 = c;
+                frame_length_offset2 = stoi(optarg);
             break;
         case 'f':
             fprintf (stderr, "Using fifo as output\n");

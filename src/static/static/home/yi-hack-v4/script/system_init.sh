@@ -14,7 +14,7 @@ elif [ -d "/home/yi-hack-v4" ]; then
     UDHCPC_SCRIPT_DEST="/home/app/script/default.script"
 fi
 
-ARCHIVE_FILE="$YI_HACK_V4_PREFIX/yi-hack-v4/yi-hack-v4.7z"
+ARCHIVE_FILE="$YI_HACK_V4_PREFIX/yi-hack-v4.7z"
 DESTDIR="$YI_HACK_V4_PREFIX/yi-hack-v4"
 
 DHCP_SCRIPT_DEST="/home/app/script/wifidhcp.sh"

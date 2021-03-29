@@ -7,3 +7,10 @@ mkdir -p ../../build/home/yi-hack-v4/lib/ || exit 1
 
 rsync -av ./_install/* ../../build/home/yi-hack-v4/ || exit 1
 
+# Deleting all symlinks from the folder
+find ../../build/home/yi-hack-v4/lib -type l -delete
+
+# Copying files due to symlink issues
+cp -f ../../build/home/yi-hack-v4/lib/libfuse3.so.3.4.2 ../../build/home/yi-hack-v4/lib/libfuse3.so
+cp -f ../../build/home/yi-hack-v4/lib/libfuse3.so.3.4.2 ../../build/home/yi-hack-v4/lib/libfuse3.so.3
+

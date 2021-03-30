@@ -122,7 +122,7 @@ void print_usage(char *progname)
     fprintf(stderr, "\t-r RES, --resolution RES\n");
     fprintf(stderr, "\t\tset resolution: LOW or HIGH (default HIGH)\n");
     fprintf(stderr, "\t-m MODEL, --model MODEL\n");
-    fprintf(stderr, "\t\tselect cam model: yi_home, yi_home_1080, yi_dome_720p, yi_outdoor or custom\n");
+    fprintf(stderr, "\t\tselect cam model: yi_home, yi_home_1080, yi_dome_720p or yi_outdoor\n");
     fprintf(stderr, "\t--table_offset\n");
     fprintf(stderr, "\t\toffset of the table for the resolution selected\n");
     fprintf(stderr, "\t--table_record_size\n");
@@ -345,16 +345,6 @@ int main(int argc, char **argv) {
             print_usage(argv[0]);
             return -1;
         }
-    }
-
-    if ((table_high_offset == 0) || (table_low_offset == 0) ||
-                (table_record_size == 0) || (table_record_num == 0) ||
-                (buf_size == 0) || (stream_high_offset == 0) ||
-                (stream_low_offset == 0) || (frame_counter_offset == 0) ||
-                (frame_offset_offset == 0) || (frame_length_offset == 0)) {
-
-        print_usage(argv[0]);
-        return -1;
     }
 
     if (strcmp("h264grabber_l", basename(argv[0])) == 0) {

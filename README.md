@@ -1,27 +1,6 @@
+## Why this Yi firmware?
 
-<p align="center">
-	<img height="200" src="https://raw.githubusercontent.com/TheCrypt0/yi-hack-v4/master/imgs/yi-hack-v4-header.png">
-</p>
-
-## Why another Yi firmware?
-
-The answer is simple: missing updates, RTSP and not based on the latest stock firmware (which features improvements and new cool stuff). The effort and work that has been put into the other projects is great and without them the making of this new version wouldn't be possible.
-
-## RTSP Server
-I've been working on a functional RTSP implementation for the past 3 months. After that I published on Discord the first working closed-beta, available to supporters only.
-Since then I fixed some issues with Xiaomi's H264 encoder that happened to hang ffmpeg of Shinobi and Home Assistant.
-
-Now everything works as it should and the app functionalities are intact (but they can be disabled if you want).
-
-Tested on the following platforms (but it should work with anything that accepts an RTSP stream):
-- Home Assistant
-- Shinobi
-- Zoneminder
-- Synology Surveillance Station
-
-I'm really thankful to those who supported the project and helped me by donating or sending me new cameras to test on, therefore I would like to reward them allowing to be the first ones to test the new functionalities.
-
-Here's a quick guide on how to enable it: [Enable RTSP Server](https://github.com/TheCrypt0/yi-hack-v4/wiki/Enable-RTSP-Server).
+The answer is simple: missing updates, RTSP and not based on the latest stock firmware (which features improvements and new cool stuff).
 
 ## Table of Contents
 
@@ -60,8 +39,8 @@ This firmware will add the following features:
 
 Currently this project supports the following cameras:
 
-- Yi 1080p Home 48US - confirmed but issues are still there / currently testing
-- Yi Home 17CN / 27US / 47US - not confirmed / will be tested soon
+- Yi 1080p Home 48US - confirmed with minor issues / still testing
+- Yi Home 17CN / 27US / 47US - confirmed
 - Yi Dome - not confirmed / will be tested soon
 - Yi 1080p Dome - not confirmed / I have no device to test
 - Yi 1080p Cloud Dome - not confirmed / I have no device to test

@@ -1,6 +1,10 @@
 #!/bin/sh
 
-if [ -d "/usr/yi-hack-v4" ]; then
+if [ -f "/tmp/sd/yi-hack-v4.7z" ] || [ -d "/tmp/sd/yi-hack-v4" ]; then
+    YI_HACK_V4_PREFIX="/tmp/sd"
+    YI_PREFIX="/tmp/sd/yi-hack-v4"
+    UDHCPC_SCRIPT_DEST="/home/app/script/default.script"
+elif [ -d "/usr/yi-hack-v4" ]; then
     YI_HACK_V4_PREFIX="/usr"
     YI_PREFIX="/home"
     UDHCPC_SCRIPT_DEST="/home/default.script"
@@ -10,7 +14,7 @@ elif [ -d "/home/yi-hack-v4" ]; then
     UDHCPC_SCRIPT_DEST="/home/app/script/default.script"
 fi
 
-ARCHIVE_FILE="$YI_HACK_V4_PREFIX/yi-hack-v4/yi-hack-v4.7z"
+ARCHIVE_FILE="$YI_HACK_V4_PREFIX/yi-hack-v4.7z"
 DESTDIR="$YI_HACK_V4_PREFIX/yi-hack-v4"
 
 DHCP_SCRIPT_DEST="/home/app/script/wifidhcp.sh"

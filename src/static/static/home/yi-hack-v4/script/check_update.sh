@@ -2,7 +2,9 @@
 
 CONF_FILE="etc/system.conf"
 
-if [ -d "/usr/yi-hack-v4" ]; then
+if [ -d "/tmp/sd/yi-hack-v4" ]; then
+        YI_HACK_PREFIX="/tmp/sd/yi-hack-v4"
+elif [ -d "/usr/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/usr/yi-hack-v4"
 elif [ -d "/home/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/home/yi-hack-v4"
@@ -21,7 +23,7 @@ REMOTE_VERSION_URL=https://raw.githubusercontent.com/alienatedsec/yi-hack-v4/mas
 REMOTE_VERSION_FILE=/tmp/.hackremotever
 REMOTE_NEWVERSION_FILE=/tmp/.hacknewver
 
-LOCAL_VERSION_FILE=/home/yi-hack-v4/version
+LOCAL_VERSION_FILE=/tmp/sd/yi-hack-v4/version
 
 if [[ $(get_config CHECK_UPDATES) == "yes" ]] ; then
     while : ; do

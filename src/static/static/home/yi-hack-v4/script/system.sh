@@ -2,7 +2,9 @@
 
 CONF_FILE="etc/system.conf"
 
-if [ -d "/usr/yi-hack-v4" ]; then
+if [ -d "/tmp/sd/yi-hack-v4" ]; then
+        YI_HACK_PREFIX="/tmp/sd/yi-hack-v4"
+elif [ -d "/usr/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/usr/yi-hack-v4"
 elif [ -d "/home/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/home/yi-hack-v4"
@@ -14,8 +16,11 @@ get_config()
     grep -w $1 $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2
 }
 
-if [ -d "/usr/yi-hack-v4" ]; then
-	export LD_LIBRARY_PATH=/home/libusr:$LD_LIBRARY_PATH:/usr/yi-hack-v4/lib:/home/hd1/yi-hack-v4/lib
+if [ -d "/tmp/sd/yi-hack-v4/" ]; then
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lib:/usr/lib:/home/lib:/home/app/locallib:/tmp/sd:/tmp/sd/yi-hack-v4:/tmp/sd/yi-hack-v4/lib:/home/yi-hack-v4/lib
+	export PATH=$PATH:/usr/bin:/usr/sbin:/bin:/sbin:/home/base/tools:/home/yi-hack-v4/bin:/home/app/localbin:/home/base:/tmp/sd/yi-hack-v4/bin:/tmp/sd/yi-hack-v4/sbin:/tmp/sd/yi-hack-v4/usr/bin:/tmp/sd/yi-hack-v4/usr/sbin:/home/yi-hack-v4/sbin
+elif [ -d "/usr/yi-hack-v4" ]; then
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/libusr:/usr/yi-hack-v4/lib:/home/hd1/yi-hack-v4/lib
 	export PATH=$PATH:/usr/yi-hack-v4/bin:/usr/yi-hack-v4/sbin:/home/hd1/yi-hack-v4/bin:/home/hd1/yi-hack-v4/sbin
 elif [ -d "/home/yi-hack-v4" ]; then
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lib:/home/yi-hack-v4/lib:/tmp/sd/yi-hack-v4/lib
@@ -74,7 +79,10 @@ if [[ $(get_config MQTT) == "yes" ]] ; then
     mqttv4 &
 fi
 
+##ToDo -
 if [[ $(get_config RTSP) == "yes" ]] ; then
+# todo - alien
+# RRTSP_MODEL=$MODEL_SUFFIX RRTSP_RES=$(get_config RTSP_STREAM)  &
 #    if [[ -f "$YI_HACK_PREFIX/bin/viewd" && -f "$YI_HACK_PREFIX/bin/rtspv4" ]]
 #        viewd -D -S
 #        rtspv4 -D -S

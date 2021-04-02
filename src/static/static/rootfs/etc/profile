@@ -30,9 +30,9 @@ WHITE="[1;37m"
 
 umask 022
 
-alias crontab="crontab -c /home/yi-hack-v4/etc/crontabs"
+alias crontab="crontab -c /tmp/sd/yi-hack-v4/etc/crontabs"
 
-HACK_VERSION=$(cat /home/yi-hack-v4/version)
+HACK_VERSION=$(cat /tmp/sd/yi-hack-v4/version)
 NEW_VERSION=$(cat /tmp/.hacknewver 2>/dev/null)
 
 ###############################################################################
@@ -59,7 +59,7 @@ else
         echo " UPDATE: A new version is available."
         echo ""
         echo " You can download it from GitHub:"
-        echo " > https://github.com/TheCrypt0/yi-hack-v4/releases"
+        echo " > https://github.com/alienatedsec/yi-hack-v4/releases"
         echo " -----------------------------------------------------"
     elif [[ $NEW_VERSION == "no_currentversionisbeta" ]] ; then
         echo " WARNING: You are using an early-access version."

@@ -19,3 +19,12 @@ REQUIRED_PACKAGES
 INIT_SUBMODULES.md
 
 *.DS_Store
+
+# Added for easier management
+src/dropbear/dropbear
+src/ftpd/pure-ftpd
+src/mqtt/mqttv4
+src/uClibc/uClibc
+src/wsdd/wsdd
+
+

@@ -87,11 +87,13 @@ if [[ $(get_config RTSP) == "yes" ]] ; then
 #        viewd -D -S
 #        rtspv4 -D -S
 #    fi
-    CAMVER=$(cat /home/app/.camver)
-    h264grabber -r low -m $CAMVER -f &
-    h264grabber -r high -m $CAMVER -f &
-    rRTSPServer -r both &
-fi
+# Check for files not needed
+#if [[ -f "$YI_HACK_PREFIX/bin/h264grabber" && -f "$YI_HACK_PPREFIX/bin/rRTSPServer" ]] ; then
+	CAMVER=$(cat /home/app/.camver)
+	h264grabber -r low -m $CAMVER -f &
+	h264grabber -r high -m $CAMVER -f &
+	rRTSPServer -r both &
+#fi
 fi
 
 #ToDo

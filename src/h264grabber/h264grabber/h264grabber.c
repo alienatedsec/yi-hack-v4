@@ -33,6 +33,8 @@
 #include <sys/time.h>
 #include <getopt.h>
 #include <signal.h>
+#include <errno.h>
+#include <limits.h>
 
 // yi_home
 #define TABLE_HIGH_OFFSET_YI_HOME 0x10
@@ -58,7 +60,7 @@
 #define FRAME_OFFSET_OFFSET_YI_HOME_1080P 4
 #define FRAME_LENGTH_OFFSET_YI_HOME_1080P 8
 
-// YI_DOME
+// yi_dome - amended
 #define TABLE_HIGH_OFFSET_YI_DOME 0x10
 #define TABLE_LOW_OFFSET_YI_DOME 0x1920
 #define TABLE_RECORD_SIZE_YI_DOME 32
@@ -121,6 +123,22 @@ void print_usage(char *progname)
     fprintf(stderr, "\t\tset resolution: LOW or HIGH (default HIGH)\n");
     fprintf(stderr, "\t-m MODEL, --model MODEL\n");
     fprintf(stderr, "\t\tselect cam model: yi_home, yi_home_1080, yi_dome or yi_outdoor\n");
+    fprintf(stderr, "\t--table_offset\n");
+    fprintf(stderr, "\t\toffset of the table for the resolution selected\n");
+    fprintf(stderr, "\t--table_record_size\n");
+    fprintf(stderr, "\t\tsize of the record in the table\n");
+    fprintf(stderr, "\t--table_record_num\n");
+    fprintf(stderr, "\t\tnumber of record in the table\n");
+    fprintf(stderr, "\t--buf_size\n");
+    fprintf(stderr, "\t\tsize of the buffer file\n");
+    fprintf(stderr, "\t--stream_offset\n");
+    fprintf(stderr, "\t\toffset of the stream for the resolution selected\n");
+    fprintf(stderr, "\t--frame_counter_offset\n");
+    fprintf(stderr, "\t\toffset of the frame counter in the record\n");
+    fprintf(stderr, "\t--frame_offset_offset\n");
+    fprintf(stderr, "\t\toffset of the frame offset in the record\n");
+    fprintf(stderr, "\t--frame_length_offset\n");
+    fprintf(stderr, "\t\toffset of the frame lenght in the record\n");
     fprintf(stderr, "\t-f, --fifo\n");
     fprintf(stderr, "\t\tenable fifo output\n");
     fprintf(stderr, "\t-d, --debug\n");
@@ -141,7 +159,8 @@ int main(int argc, char **argv) {
     int current_frame, frame_counter, frame_counter_tmp, next_frame_counter;
     int table_offset, stream_offset;
 
-    int i, c;
+    int i, c, i_tmp;
+    char *endptr;
     mode_t mode = 0755;
 
     int table_high_offset;
@@ -180,6 +199,14 @@ int main(int argc, char **argv) {
         {
             {"resolution",  required_argument, 0, 'r'},
             {"model",  required_argument, 0, 'm'},
+            {"table_offset",  required_argument, 0, '0'},
+            {"table_record_size",  required_argument, 0, '1'},
+            {"table_record_num",  required_argument, 0, '2'},
+            {"buf_size",  required_argument, 0, '3'},
+            {"stream_offset",  required_argument, 0, '4'},
+            {"frame_counter_offset",  required_argument, 0, '5'},
+            {"frame_offset_offset",  required_argument, 0, '6'},
+            {"frame_length_offset",  required_argument, 0, '7'},
             {"fifo",  no_argument, 0, 'f'},
             {"debug",  no_argument, 0, 'd'},
             {"help",  no_argument, 0, 'h'},
@@ -188,7 +215,7 @@ int main(int argc, char **argv) {
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long (argc, argv, "r:m:fdh",
+        c = getopt_long (argc, argv, "r:m:0:1:2:3:4:5:6:7:fdh",
                          long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -250,6 +277,49 @@ int main(int argc, char **argv) {
                 frame_offset_offset = FRAME_OFFSET_OFFSET_YI_OUTDOOR;
                 frame_length_offset = FRAME_LENGTH_OFFSET_YI_OUTDOOR;
             }
+            break;
+
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+            errno = 0;    /* To distinguish success/failure after call */
+            i_tmp = strtol(optarg, &endptr, 10);
+
+            /* Check for various possible errors */
+            if ((errno == ERANGE && (i_tmp == LONG_MAX || i_tmp == LONG_MIN)) || (errno != 0 && i_tmp == 0)) {
+                print_usage(argv[0]);
+                exit(EXIT_FAILURE);
+            }
+            if (endptr == optarg) {
+                print_usage(argv[0]);
+                exit(EXIT_FAILURE);
+            }
+
+            if (c == '0') {
+                table_high_offset = i_tmp;
+                table_low_offset = i_tmp;
+            } else if (c == '1') {
+                table_record_size = i_tmp;
+            } else if (c == '2') {
+                table_record_num = i_tmp;
+            } else if (c == '3') {
+                buf_size = i_tmp;
+            } else if (c == '4') {
+                stream_high_offset = i_tmp;
+                stream_low_offset = i_tmp;
+            } else if (c == '5') {
+                frame_counter_offset = i_tmp;
+            } else if (c == '6') {
+                frame_offset_offset = i_tmp;
+            } else if (c == '7') {
+                frame_length_offset = i_tmp;
+            }
+
             break;
 
         case 'f':

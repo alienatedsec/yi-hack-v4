@@ -2,13 +2,13 @@
 
 CONF_FILE="etc/system.conf"
 
-if [ -d "/tmp/sd/yi-hack-v4" ]; then
+#if [ -d "/tmp/sd/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/tmp/sd/yi-hack-v4"
-elif [ -d "/usr/yi-hack-v4" ]; then
-        YI_HACK_PREFIX="/usr/yi-hack-v4"
-elif [ -d "/home/yi-hack-v4" ]; then
-        YI_HACK_PREFIX="/home/yi-hack-v4"
-fi
+#elif [ -d "/usr/yi-hack-v4" ]; then
+#        YI_HACK_PREFIX="/usr/yi-hack-v4"
+#elif [ -d "/home/yi-hack-v4" ]; then
+#        YI_HACK_PREFIX="/home/yi-hack-v4"
+#fi
 
 get_config()
 {
@@ -16,19 +16,19 @@ get_config()
     grep -w $1 $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2
 }
 
-if [ -d "/tmp/sd/yi-hack-v4/" ]; then
+#if [ -d "/tmp/sd/yi-hack-v4/" ]; then
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lib:/usr/lib:/home/lib:/home/app/locallib:/tmp/sd:/tmp/sd/yi-hack-v4:/tmp/sd/yi-hack-v4/lib:/home/yi-hack-v4/lib
 	export PATH=$PATH:/usr/bin:/usr/sbin:/bin:/sbin:/home/base/tools:/home/yi-hack-v4/bin:/home/app/localbin:/home/base:/tmp/sd/yi-hack-v4/bin:/tmp/sd/yi-hack-v4/sbin:/tmp/sd/yi-hack-v4/usr/bin:/tmp/sd/yi-hack-v4/usr/sbin:/home/yi-hack-v4/sbin
-elif [ -d "/usr/yi-hack-v4" ]; then
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/libusr:/usr/yi-hack-v4/lib:/home/hd1/yi-hack-v4/lib
-	export PATH=$PATH:/usr/yi-hack-v4/bin:/usr/yi-hack-v4/sbin:/home/hd1/yi-hack-v4/bin:/home/hd1/yi-hack-v4/sbin
-elif [ -d "/home/yi-hack-v4" ]; then
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lib:/home/yi-hack-v4/lib:/tmp/sd/yi-hack-v4/lib
-	export PATH=$PATH:/home/base/tools:/home/yi-hack-v4/bin:/home/yi-hack-v4/sbin:/tmp/sd/yi-hack-v4/bin:/tmp/sd/yi-hack-v4/sbin
-fi
+#elif [ -d "/usr/yi-hack-v4" ]; then
+#	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/libusr:/usr/yi-hack-v4/lib:/home/hd1/yi-hack-v4/lib
+#	export PATH=$PATH:/usr/yi-hack-v4/bin:/usr/yi-hack-v4/sbin:/home/hd1/yi-hack-v4/bin:/home/hd1/yi-hack-v4/sbin
+#elif [ -d "/home/yi-hack-v4" ]; then
+#	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lib:/home/yi-hack-v4/lib:/tmp/sd/yi-hack-v4/lib
+#	export PATH=$PATH:/home/base/tools:/home/yi-hack-v4/bin:/home/yi-hack-v4/sbin:/tmp/sd/yi-hack-v4/bin:/tmp/sd/yi-hack-v4/sbin
+#fi
 
 ulimit -s 1024
-hostname -F /etc/hostname
+hostname -F /tmp/sd/etc/hostname
 
 if [[ $(get_config DISABLE_CLOUD) == "no" ]] ; then
     (
@@ -72,6 +72,8 @@ mkdir -p $YI_HACK_PREFIX/etc/dropbear
         dropbearkey -t ecdsa -f /tmp/dropbear_ecdsa_host_key
         mv /tmp/dropbear_ecdsa_host_key $YI_HACK_PREFIX/etc/dropbear/
     fi
+    chmod 0600 $YI_HACK_PREFIX/etc/dropbear/*
+    dropbear -R -B
 fi
 
 if [[ $(get_config NTPD) == "yes" ]] ; then

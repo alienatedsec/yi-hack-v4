@@ -3,7 +3,7 @@
 printf "Content-type: application/json\r\n\r\n"
 
 CAMERA_MODEL=$(cat /home/app/.camver)
-HOSTNAME=$(cat /etc/hostname)
+HOSTNAME=$(cat /tmp/sd/yi-hack-v4/etc/hostname)
 FW_VERSION=$(cat /tmp/sd/yi-hack-v4/version)
 HOME_VERSION=$(cat /home/app/.appver)
 LOCAL_TIME=$(date)

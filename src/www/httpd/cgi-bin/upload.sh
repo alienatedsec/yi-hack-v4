@@ -1,12 +1,12 @@
 #!/bin/sh
 
-if [ -d "/tmp/sd/yi-hack-v4" ]; then
+#if [ -d "/tmp/sd/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/tmp/sd/yi-hack-v4"
-elif [ -d "/usr/yi-hack-v4" ]; then
-        YI_HACK_PREFIX="/usr/yi-hack-v4"
-elif [ -d "/home/yi-hack-v4" ]; then
-        YI_HACK_PREFIX="/home/yi-hack-v4"
-fi
+#elif [ -d "/usr/yi-hack-v4" ]; then
+#        YI_HACK_PREFIX="/usr/yi-hack-v4"
+#elif [ -d "/home/yi-hack-v4" ]; then
+#        YI_HACK_PREFIX="/home/yi-hack-v4"
+#fi
 
 get_file_type()
 {   
@@ -74,19 +74,19 @@ if [[ "$CUT_FILE_TYPE" == "home" || "$CUT_FILE_TYPE" == "rootfs" ]] ; then
 else
     get_file_from_post $TMP_FILE
 
-    if [ "$FILE_TYPE" == "rtspv4__upload" ] ; then
-        7za x "$TMP_FILE" -y -o. &>/dev/null
-        
-        killall viewd rtspv4
-        
-        cp -rf rtspv4__*/* $YI_HACK_PREFIX/
-        rm -rf rtspv4__*
-        
-        chmod +x $YI_HACK_PREFIX/bin/viewd
-        chmod +x $YI_HACK_PREFIX/bin/rtspv4
-    else
+#    if [ "$FILE_TYPE" == "rtspv4__upload" ] ; then
+#        7za x "$TMP_FILE" -y -o. &>/dev/null
+#        
+#        killall viewd rtspv4
+#        
+#        cp -rf rtspv4__*/* $YI_HACK_PREFIX/
+#        rm -rf rtspv4__*
+#        
+#        chmod +x $YI_HACK_PREFIX/bin/viewd
+#        chmod +x $YI_HACK_PREFIX/bin/rtspv4
+#    else
         cp -f "$TMP_FILE" "$YI_HACK_PREFIX/$FILE_TYPE"
-    fi
+#    fi
 fi
 
 rm -f $TMP_FILE

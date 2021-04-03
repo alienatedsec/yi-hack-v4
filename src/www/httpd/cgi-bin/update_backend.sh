@@ -1,12 +1,12 @@
 #!/bin/sh
 
-if [ -d "/tmp/sd/yi-hack-v4" ]; then
+#if [ -d "/tmp/sd/yi-hack-v4" ]; then
         YI_HACK_PREFIX="/tmp/sd/yi-hack-v4"
-elif [ -d "/usr/yi-hack-v4" ]; then
-        YI_HACK_PREFIX="/usr/yi-hack-v4"
-elif [ -d "/home/yi-hack-v4" ]; then
-        YI_HACK_PREFIX="/home/yi-hack-v4"
-fi
+#elif [ -d "/usr/yi-hack-v4" ]; then
+#        YI_HACK_PREFIX="/usr/yi-hack-v4"
+#elif [ -d "/home/yi-hack-v4" ]; then
+#        YI_HACK_PREFIX="/home/yi-hack-v4"
+#fi
 
 REMOTE_VERSION_FILE=/tmp/.hackremotever
 REMOTE_NEWVERSION_FILE=/tmp/.hacknewver

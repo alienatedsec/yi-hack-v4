@@ -67,7 +67,11 @@ if [[ $(get_config FTPD) == "yes" ]] ; then
 fi
 
 if [[ $(get_config SSHD) == "yes" ]] ; then
-    dropbear -R
+mkdir -p $YI_HACK_PREFIX/etc/dropbear
+    if [ ! -f $YI_HACK_PREFIX/etc/dropbear/dropbear_ecdsa_host_key ]; then
+        dropbearkey -t ecdsa -f /tmp/dropbear_ecdsa_host_key
+        mv /tmp/dropbear_ecdsa_host_key $YI_HACK_PREFIX/etc/dropbear/
+    fi
 fi
 
 if [[ $(get_config NTPD) == "yes" ]] ; then
@@ -114,7 +118,8 @@ if [[ $(get_config ONVIF) == "yes" ]] ; then
     fi
 fi
 
-sleep 25 && camhash > /tmp/camhash &
+# Licensing Camhash no longer needed
+#sleep 25 && camhash > /tmp/camhash &
 
 # First run on startup, then every day via crond
 $YI_HACK_PREFIX/script/check_update.sh

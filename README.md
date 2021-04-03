@@ -17,11 +17,10 @@ This firmware will add the following features:
 - **NEW FEATURES**
   - **NEW CAMERAS SUPPORTED**: Yi Outdoor 1080p and Yi Cloud Dome 1080p.
   - **RTSP server** - which will allow a RTSP stream of the video while keeping the cloud features enabled (available to all and its free).
-  - viewd - a daemon to check the `/tmp/view` buffer heads/tails location (needed by the RTSP).
   - **MQTT** - detect motion directly from your home server!
   - WebServer - user-friendly stats and configurations.
   - SSH server -  _Enabled by default._
-  - Telnet server -  _Disabled by default._
+  - Telnet server -  _Enabled by default._
   - FTP server -  _Enabled by default._
   - Web server -  _Enabled by default._
   - The possibility to change some camera settings (copied from the official app):
@@ -32,6 +31,7 @@ This firmware will add the following features:
     - ir led
     - rotate
   - PTZ support through a web page.
+  - Snapshot feature (not tested or even intergated in the web configuration)
   - Proxychains-ng - _Disabled by default. Useful if the camera is region locked._
   - The possibility to disable all the cloud features while keeping the RTSP stream.
 
@@ -41,7 +41,7 @@ Currently this project supports the following cameras:
 
 - Yi 1080p Home 48US - confirmed with minor issues / still testing
 - Yi Home 17CN / 27US / 47US - confirmed
-- Yi Dome - not confirmed / will be tested soon
+- Yi Dome - confirmed
 - Yi 1080p Dome - not confirmed / I have no device to test
 - Yi 1080p Cloud Dome - not confirmed / I have no device to test
 - Yi 1080p Outdoor - not confirmed / I have no device to test
